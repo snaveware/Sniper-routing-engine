@@ -38,5 +38,4 @@
   }
   require_once "./$system_folder/Engine.php";
   $router = new Router($path);
-  $router->__constructor($path);
   ?>

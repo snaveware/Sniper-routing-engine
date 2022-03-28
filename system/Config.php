@@ -59,8 +59,9 @@
          return $regex;
       }
 
-      public function routes()
+      public function routes($method)
       {
+         
          //regex=:any,:number,:string
          //can add more routes here
          /*
@@ -68,15 +69,39 @@
          second parameter is the method in the controller(index is the default method)
          all other parameters are sent to the method as an array
          */ 
-         $routes=array();
-         $routes['/']="Home";
-         $routes['/image/:any']="File/image/:1";
-         $routes['/video/:any'] ="File/video/:1";
-         $routes['/doc/:any'] = "File/document/:1";
-         $routes['/image/:any/:any'] = "File/image/:1/:2";
-         $routes['/video/:any/:any'] = "File/video/:1/:2";
-         $routes['/doc/:any/:any'] = "File/document/:1/:2";
-         return $routes;
+
+         $GET_routes=array();
+         $GET_routes['/']="Home";
+         $GET_routes['/image/:any']="File/image/:1";
+         $GET_routes['/video/:any'] ="File/video/:1";
+         $GET_routes['/doc/:any'] = "File/document/:1";
+         $GET_routes['/image/:any/:any'] = "File/image/:1/:2";
+         $GET_routes['/video/:any/:any'] = "File/video/:1/:2";
+         $GET_routes['/doc/:any/:any'] = "File/document/:1/:2";
+
+         $POST_routes = array();
+
+         $PUT_routes = array();
+
+         $DELETE_routes  = array();
+
+         switch ($method?strtolower($method) : $method) {
+            case 'post':
+               return $POST_routes;
+               break;
+            case 'put':
+               return $PUT_routes;
+               break;
+            
+            case "delete" :
+               return $DELETE_routes;
+               break;
+            
+            default:
+               return $GET_routes;
+               break;
+         }
+         
       }
       public function database()
       {

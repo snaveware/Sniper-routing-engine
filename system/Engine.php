@@ -3,7 +3,7 @@ include_once "./$system_folder/Config.php";
 class Router extends Config
 {
    private $path;
-   public function __constructor($path)
+   public function __construct($path,$method)
    {
       $this->path = $path;
       $__path = $this->determine_path();
@@ -15,7 +15,7 @@ class Router extends Config
 
       $__path;
       $path = $this->path;
-      $routes = $this->routes();
+      $routes = $this->routes(null);
       $regex = $this->route_regex();
       foreach ($routes as $key => $value) {
 
@@ -146,7 +146,7 @@ class Router extends Config
       }
       else
       {
-         include_once"$controllers_folder/$__404page.php";
+         include_once"./$controllers_folder/$__404page.php";
          $controller_object = new $__404page;
          $method= "index";
          $parameters = array();
